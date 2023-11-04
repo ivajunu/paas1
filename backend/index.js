@@ -12,10 +12,10 @@ app.listen(port, () => {
   console.log(`Redo på http://localhost:${port}/`);
 });
 
+app.use(express.static(path.join(path.resolve(), "dist")));
+
 app.listen(80, function () {
   console.log("CORS-enabled web server listening on port 80");
 });
-
-app.use(express.static(path.join(path.resolve(), "dist")));
 
 app.use(cors());
