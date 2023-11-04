@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
 
+  useEffect(() => {
+    fetch("/api")
+      .then((response) => response.json())
+      .then((result) => {
+        alert(`Hello ${result.ivanna}!`);
+      });
+  }, []);
+
   return (
     <>
-      <div></div>
       <h1>Ivanna</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
