@@ -8,24 +8,36 @@ export default function App() {
     fetch("/api")
       .then((response) => response.json())
       .then((result) => {
-        console.log(`Hello ${result}!`);
         setValues(result);
-        console.log(result);
-        console.log(values);
       });
   }, []);
 
   return (
     <>
-      <h1>Ivanna</h1>
-      <div>
-        {values && (
-          <ul>
-            {values.map((value) => (
-              <li key={value.id}>{value.name}</li>
-            ))}
-          </ul>
-        )}
+      <h1>Katthemsida</h1>
+      <div className="presentation">
+        <p>
+          Varje katt på webbplatsen presenteras med detaljer om ålder, namn, ras
+          och färg. Denna information hjälper potentiella adoptörer att få en
+          uppfattning om katternas egenskaper och utseende. Målet är att
+          underlätta adoptionsprocessen och hjälpa katterna att hitta
+          kärleksfulla hem.
+        </p>
+      </div>
+      <div className="catbox">
+        {values &&
+          values.map((value) => (
+            <div key={value.id}>
+              <p>
+                Denna katt heter {value.name} och är {value.age}
+                år gammal.
+              </p>
+              <p>
+                {value.name} har färgen {value.color} och är av rasen{" "}
+                {value.breed}
+              </p>
+            </div>
+          ))}
       </div>
     </>
   );
