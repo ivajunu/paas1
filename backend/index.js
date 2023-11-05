@@ -19,9 +19,9 @@ const client = new Client({
 client.connect();
 
 app.get("/api", async (_request, response) => {
-  const { cats } = await client.query("SELECT * FROM cats");
+  const { rows } = await client.query("SELECT * FROM cats");
 
-  response.send(cats);
+  response.send(rows);
 });
 
 app.listen(port, () => {
