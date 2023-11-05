@@ -1,33 +1,32 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0);
+export default function App() {
+  const [values, setValues] = useState(null);
 
   useEffect(() => {
     fetch("/api")
       .then((response) => response.json())
       .then((result) => {
-        alert(`Hello ${result.ivanna}!`);
+        console.log(`Hello ${result}!`);
+        setValues(result);
+        console.log(result);
+        console.log(values);
       });
   }, []);
 
   return (
     <>
       <h1>Ivanna</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div>
+        {values && (
+          <ul>
+            {values.map((value) => (
+              <li key={value.id}>{value.name}</li>
+            ))}
+          </ul>
+        )}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }
-
-export default App;
