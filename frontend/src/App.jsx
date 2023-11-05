@@ -39,6 +39,7 @@ export default function App() {
             </div>
           ))}
       </div>
+      <p>Hemsidan gjord av Ivanna JSU22</p>
     </>
   );
 }
