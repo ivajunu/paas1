@@ -19,8 +19,8 @@ const client = new Client({
 client.connect();
 
 app.get("/api", async (_request, response) => {
+  console.log("response: ", { response });
   const { rows } = await client.query("SELECT * FROM cats");
-
   response.send(rows);
 });
 
@@ -28,6 +28,6 @@ app.listen(port, () => {
   console.log(`Redo på http://localhost:${port}/`);
 });
 
-app.listen(80, function () {
+app.listen(function () {
   console.log("CORS-enabled web server listening on port 80");
 });
