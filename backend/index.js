@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static(path.join(__dirname, "public")));
 
 const client = new Client({
   connectionString: process.env.PGURI,
@@ -19,7 +19,7 @@ const client = new Client({
 client.connect();
 
 app.get("/api", async (_request, response) => {
-  console.log("response: ", { response });
+  console.log("Inkommande get anrop");
   const { rows } = await client.query("SELECT * FROM cats");
   response.send(rows);
 });
